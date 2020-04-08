@@ -8,9 +8,9 @@ public class HashCracker {
 
     private static final String alphabet = getAlphabet();
     private static final String hashToCrack1 =
-            "8acc8c0c32ada9bb46fe682f50331fe8ba68fbf93d6ae0125ba980abb4df89f1";
+            "d4faeb0660ce6d23883eced24805d2ff0da3600685e2ac9ad1dedd8cc66104ef";
     private static final String hashToCrack2 =
-            "f1e524a4cf9bf9e5df8cc0f745fa190f42a0aecdd75263361135a9013c1195a0";
+            "5443bf770be3146692aaeea227235917bc36cf1cbcf366f239f160a3ef149fee";
 
     public static void main(String[] args) {
 
