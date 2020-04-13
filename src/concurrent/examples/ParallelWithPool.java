@@ -2,10 +2,8 @@ package concurrent.examples;
 
 import concurrent.Timer;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static concurrent.examples.Common.doWork;
+import java.util.concurrent.*;
+import static concurrent.examples.Common.doHardWork;
 import static concurrent.examples.Common.waitTillAllDone;
 
 public class ParallelWithPool {
@@ -16,12 +14,15 @@ public class ParallelWithPool {
 
         Timer timer = new Timer();
 
-        pool.submit(() -> doWork());
-        pool.submit(() -> doWork());
-        pool.submit(() -> doWork());
+        for (int i = 0; i < 8; i++) {
+            pool.submit(() -> doHardWork());
+        }
 
         waitTillAllDone(pool);
 
         System.out.println("\n" + timer.getPassedTime());
+
     }
+
+
 }

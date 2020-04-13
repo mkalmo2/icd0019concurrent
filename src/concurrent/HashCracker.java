@@ -6,10 +6,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class HashCracker {
 
-    private static final String alphabet = getAlphabet();
-    private static final String hashToCrack1 =
+    private static final String ALPHABET = getAlphabet();
+    private static final String HASH_TO_CRACK_1 =
             "d4faeb0660ce6d23883eced24805d2ff0da3600685e2ac9ad1dedd8cc66104ef";
-    private static final String hashToCrack2 =
+    private static final String HASH_TO_CRACK_2 =
             "5443bf770be3146692aaeea227235917bc36cf1cbcf366f239f160a3ef149fee";
 
     public static void main(String[] args) {
@@ -54,7 +54,5 @@ public class HashCracker {
 
         return sb.toString();
     }
-
-
 }
 

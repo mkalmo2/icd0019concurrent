@@ -1,13 +1,20 @@
 package concurrent.examples;
 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 public class Common {
 
     public static void waitTillAllDone(ExecutorService service) {
         service.shutdown();
-        while (!service.isTerminated()) {
-            sleep(1);
+        try {
+            while (!service.isTerminated()) {
+                service.awaitTermination(1L, TimeUnit.SECONDS);
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -23,13 +30,16 @@ public class Common {
         for (int i = 0; i < 10; i++) {
             sleep(100);
         }
-        System.out.print(".");
     }
 
-    public static void doHardWork() {
-        for (int i = 0; i < 1.2e9; i++) {
-        }
-        System.out.print(".");
+    public static int doHardWork() {
+        Random r = new Random(0);
+
+        return IntStream.range(1, 3_000_000)
+                .mapToObj(i -> r.nextInt(i))
+                .sorted()
+                .findFirst()
+                .get();
     }
 
     public static void doWork() {
