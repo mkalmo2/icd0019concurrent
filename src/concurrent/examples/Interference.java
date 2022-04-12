@@ -3,18 +3,22 @@ package concurrent.examples;
 public class Interference {
 
     public static void main(String[] args) throws InterruptedException {
+        new Interference().run();
+    }
 
-        Counter c = new Counter();
+    private int c = 0;
+
+    private void run() throws InterruptedException {
 
         Runnable r1 = () -> {
             for (int i = 0; i < 10000; i++) {
-                c.increment();
+                c++;
             }
         };
 
         Runnable r2 = () -> {
             for (int i = 0; i < 10000; i++) {
-                c.decrement();
+                c--;
             }
         };
 
@@ -27,7 +31,7 @@ public class Interference {
         t1.join();
         t2.join();
 
-        System.out.println(c.value());
+        System.out.println(c);
     }
 
 }

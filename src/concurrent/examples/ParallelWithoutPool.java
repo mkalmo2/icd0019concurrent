@@ -5,7 +5,7 @@ import concurrent.Timer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static concurrent.examples.Common.doWork;
+import static concurrent.examples.Common.*;
 
 public class ParallelWithoutPool {
 
@@ -15,8 +15,8 @@ public class ParallelWithoutPool {
 
         List<Thread> threads = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
-            Thread thread = new Thread(() -> doWork());
+        for (int i = 0; i < 4; i++) {
+            Thread thread = new Thread(() -> doHardWork());
 
             thread.start();
 

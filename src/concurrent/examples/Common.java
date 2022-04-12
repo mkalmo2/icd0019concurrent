@@ -32,10 +32,10 @@ public class Common {
         }
     }
 
-    public static int doHardWork() {
+    public static void doHardWork() {
         Random r = new Random(0);
 
-        return IntStream.range(1, 3_000_000)
+        IntStream.range(1, 2_000_000)
                 .mapToObj(i -> r.nextInt(i))
                 .sorted()
                 .findFirst()

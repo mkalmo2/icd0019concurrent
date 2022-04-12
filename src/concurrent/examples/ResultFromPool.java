@@ -19,7 +19,11 @@ public class ResultFromPool {
         Future<Integer> f1 = pool.submit(c1);
         Future<Integer> f2 = pool.submit(c2);
 
+        System.out.println(f1);
+
         System.out.println(f1.get() + f2.get());
+
+        System.out.println(f1);
 
         pool.shutdown();
     }
