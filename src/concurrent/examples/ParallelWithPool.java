@@ -10,11 +10,11 @@ public class ParallelWithPool {
 
     public static void main(String[] args) {
 
-        ExecutorService pool = Executors.newFixedThreadPool(8);
+        ExecutorService pool = Executors.newFixedThreadPool(4);
 
         Timer timer = new Timer();
 
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 20; i++) {
             pool.submit(() -> doHardWork());
         }
 
