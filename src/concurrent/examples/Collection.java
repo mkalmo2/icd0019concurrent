@@ -1,35 +1,28 @@
 package concurrent.examples;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Collection {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        List<Integer> list = Collections.synchronizedList(new ArrayList<>());
 
-        List<Integer> list = new ArrayList<>();
-
-        Runnable r1 = () -> {
-            list.add(1);
-        };
-
-        Runnable r2 = () -> {
-            try {
-
-                for (Integer integer : list) {}
-
-            } catch (Exception e) {
-                System.out.println(e);
+        Runnable addElements = () -> {
+            for (int i = 0; i < 10_000; i++) {
+                list.add(i);
             }
         };
 
-        for (int i = 0; i < 1000; i++) {
-            new Thread(r1).start();
-            new Thread(r2).start();
-        }
+        Thread thread1 = new Thread(addElements);
+        Thread thread2 = new Thread(addElements);
 
-        System.out.println(list.size());
+        thread1.start();
+        thread2.start();
+        thread1.join();
+        thread2.join();
+
+        System.out.println("Size: " + list.size());
     }
-
-
 }
