@@ -12,22 +12,13 @@ public class Streams {
 
         long count = IntStream.range(0, 200_000)
                 .parallel()
-                .filter(n -> isPrime(n))
+                .filter(Util::isPrime)
                 .count();
 
         System.out.println(count);
 
         System.out.println(timer.getPassedTime());
 
-    }
-
-    public static boolean isPrime(int number) {
-        if (number < 2) {
-            return false;
-        }
-        return IntStream
-                .rangeClosed(2, number / 2)
-                .noneMatch(i -> number % i == 0);
     }
 
 }
