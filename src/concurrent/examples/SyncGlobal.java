@@ -4,10 +4,10 @@ public class SyncGlobal {
 
     private static final Object LOCK = new Object();
 
-    private static int a = 1;
-    private static int b = 0;
+    private int a = 1;
+    private int b = 0;
 
-    public static void main(String[] args) {
+    public void swapVariables() {
 
         synchronized (LOCK) {
             int tmp = a;
