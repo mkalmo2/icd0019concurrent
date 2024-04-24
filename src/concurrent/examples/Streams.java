@@ -25,9 +25,9 @@ public class Streams {
         if (number < 2) {
             return false;
         }
-        return !IntStream
+        return IntStream
                 .rangeClosed(2, number / 2)
-                .anyMatch(i -> number % i == 0);
+                .noneMatch(i -> number % i == 0);
     }
 
 }
