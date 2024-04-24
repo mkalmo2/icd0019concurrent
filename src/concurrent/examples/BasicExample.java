@@ -4,26 +4,15 @@ public class BasicExample {
 
     public static void main(String[] args) {
 
-        new MyThread(1).start();
-        new MyThread(2).start();
-        new MyThread(3).start();
+        Runnable r1 = () -> System.out.println(1);
+        Runnable r2 = () -> System.out.println(2);
+        Runnable r3 = () -> System.out.println(3);
+
+        new Thread(r1).start();
+        new Thread(r2).start();
+        new Thread(r3).start();
 
         System.out.println("done");
-    }
-
-    private static class MyThread extends Thread {
-
-        private Integer number;
-
-        public MyThread(Integer number) {
-            this.number = number;
-        }
-
-        @Override
-        public void run() {
-            System.out.println(
-                    String.format("Thread %d is running", number));
-        }
     }
 }
 
