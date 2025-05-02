@@ -5,7 +5,11 @@ public class SyncInstance {
     private int x = 1;
     private int y = 0;
 
-    private void swapVariables() {
+    public static void main(String[] args) {
+        new SyncInstance().swap();
+    }
+
+    private void swap() {
         synchronized (this) {
             int tmp = x;
 
@@ -15,7 +19,7 @@ public class SyncInstance {
         }
     }
 
-    private synchronized void swapVariables2() {
+    private synchronized void swap2() {
         int tmp = x;
 
         x = y;

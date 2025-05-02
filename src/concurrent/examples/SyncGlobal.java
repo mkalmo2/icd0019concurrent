@@ -7,8 +7,7 @@ public class SyncGlobal {
     private int a = 1;
     private int b = 0;
 
-    public void swapVariables() {
-
+    public void swap() {
         synchronized (LOCK) {
             int tmp = a;
 
@@ -16,9 +15,7 @@ public class SyncGlobal {
 
             b = tmp;
         }
-
-        System.out.println(a);
-        System.out.println(b);
     }
+
 }
 

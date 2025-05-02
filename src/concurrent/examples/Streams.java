@@ -1,8 +1,7 @@
 package concurrent.examples;
 
-import concurrent.Timer;
-
 import java.util.stream.IntStream;
+import concurrent.Timer;
 
 public class Streams {
 
@@ -12,7 +11,7 @@ public class Streams {
 
         long count = IntStream.range(0, 200_000)
                 .parallel()
-                .filter(Util::isPrime)
+                .filter(Common::isPrime)
                 .count();
 
         System.out.println(count);
@@ -20,6 +19,7 @@ public class Streams {
         System.out.println(timer.getPassedTime());
 
     }
+
 
 }
 

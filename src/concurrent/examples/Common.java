@@ -1,22 +1,9 @@
 package concurrent.examples;
 
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class Common {
-
-    public static void waitTillAllDone(ExecutorService service) {
-        service.shutdown();
-        try {
-            while (!service.isTerminated()) {
-                service.awaitTermination(1L, TimeUnit.SECONDS);
-            }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static void sleep(long mills) {
         try {
@@ -32,19 +19,23 @@ public class Common {
         }
     }
 
-    public static void doHardWork() {
+    public static int doHardWork() {
         Random r = new Random(0);
 
-        IntStream.range(1, 2_000_000)
-                .mapToObj(i -> r.nextInt(i))
+        return IntStream.range(1, 1_000_000)
+                .mapToObj(r::nextInt)
                 .sorted()
                 .findFirst()
-                .get();
+                .orElseThrow(RuntimeException::new);
     }
 
-    public static void doWork() {
-        doHardWork();
+    public static boolean isPrime(int number) {
+        if (number < 2) {
+            return false;
+        }
+        return IntStream
+                .rangeClosed(2, number / 2)
+                .noneMatch(i -> number % i == 0);
     }
-
 
 }

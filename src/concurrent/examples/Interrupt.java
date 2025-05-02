@@ -4,7 +4,7 @@ import static concurrent.examples.Common.sleep;
 
 public class Interrupt {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Runnable r1 = () -> {
             for (int i = 0; i < 5; i++) {
