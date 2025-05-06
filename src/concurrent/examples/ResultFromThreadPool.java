@@ -7,7 +7,7 @@ import java.util.concurrent.Future;
 
 import static concurrent.examples.Common.sleep;
 
-public class ResultFromPool {
+public class ResultFromThreadPool {
 
     public static void main(String[] args) throws Exception {
 

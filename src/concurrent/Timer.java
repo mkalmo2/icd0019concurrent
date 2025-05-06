@@ -2,7 +2,7 @@ package concurrent;
 
 public class Timer {
 
-    private Long start = System.currentTimeMillis();
+    private final Long start = System.currentTimeMillis();
 
     public String getPassedTime() {
         double passedMills = System.currentTimeMillis() - start;

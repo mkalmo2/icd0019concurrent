@@ -1,37 +1,31 @@
 package concurrent.examples;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Collection {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        Map<Integer, Integer> map = new HashMap<>(); // Collections.synchronizedMap
+        List<Integer> list = new ArrayList<>();
+//        List<Integer> list = Collections.synchronizedList(new ArrayList<>()); //
 
         Runnable r1 = () -> {
-            map.put(1, 2);
-            map.clear();
-        };
-
-        Runnable r2 = () -> {
-            try {
-                map.computeIfPresent(1, (key, oldValue) -> oldValue + 1);
-            } catch (Exception e) {
-                System.out.println(e);
+            for (int i = 0; i < 1000; i++) {
+                list.add(1);
             }
         };
 
-        ExecutorService pool = Executors.newFixedThreadPool(10);
+        Thread t1 = new Thread(r1);
+        Thread t2 = new Thread(r1);
 
-        for (int i = 0; i < 10000; i++) {
-            pool.submit(r1);
-            pool.submit(r2);
-        }
+        t1.start();
+        t2.start();
 
-        pool.close();
+        t1.join();
+        t2.join();
+
+        System.out.println(list.size());
     }
 
 

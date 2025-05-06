@@ -13,7 +13,7 @@ public class BasicExample {
 
     private static class MyThread extends Thread {
 
-        private Integer number;
+        private final Integer number;
 
         public MyThread(Integer number) {
             this.number = number;

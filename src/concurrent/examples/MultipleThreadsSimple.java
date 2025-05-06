@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import concurrent.Timer;
 
-public class ParallelWithoutPool {
+public class MultipleThreadsSimple {
 
     public static void main(String[] args) throws InterruptedException {
 
